@@ -21,22 +21,28 @@ inputResult.addEventListener("input", function (e) {
   // console.log(result);
 });
 
-firstNumber = Math.trunc(Math.random() * 9) + 1;
-secondNumber = Math.trunc(Math.random() * 9) + 1;
+const update = function () {
+  firstNumber = Math.trunc(Math.random() * 9) + 1;
+  secondNumber = Math.trunc(Math.random() * 9) + 1;
 
-correctResult = firstNumber * secondNumber;
+  firstNumberEl.textContent = firstNumber;
+  secondnumberEl.textContent = secondNumber;
 
-firstNumberEl.textContent = firstNumber;
-secondnumberEl.textContent = secondNumber;
+  correctResult = firstNumber * secondNumber;
 
+  inputResult.value = "";
+};
+
+update();
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
   if (Number(result) === correctResult) {
     score++;
-    scoreEl.textContent = score;
-  } else {
+  } else if (score !== 0) {
     score--;
-    scoreEl.textContent = score;
   }
+  scoreEl.textContent = score;
+
+  update();
 });
